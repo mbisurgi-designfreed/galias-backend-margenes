@@ -1,4 +1,4 @@
-package com.designfreed.model;
+package com.designfreed.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;

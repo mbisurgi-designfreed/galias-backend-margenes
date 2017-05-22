@@ -1,6 +1,6 @@
 package com.designfreed.repository;
 
-import com.designfreed.model.ComprobanteVtaFac;
+import com.designfreed.entities.ComprobanteVtaFac;
 import org.springframework.stereotype.Repository;
 
 @Repository

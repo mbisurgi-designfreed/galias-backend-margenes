@@ -1,4 +1,4 @@
-package com.designfreed.model;
+package com.designfreed.entities;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

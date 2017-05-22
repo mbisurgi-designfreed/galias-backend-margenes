@@ -1,4 +1,4 @@
-package com.designfreed.model;
+package com.designfreed.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,8 +19,8 @@ public abstract class ComprobanteVta implements Serializable {
     @Column(name = "COD_CLIENT")
     private String codClient;
 
-    @Column(name = "FECHA_INGRESO")
-    private Date fechaIngreso;
+    @Column(name = "FECHA_EMIS")
+    private Date fechaEmis;
 
     @Column(name = "HORA_INGRESO")
     private String horaIngreso;
@@ -57,12 +57,12 @@ public abstract class ComprobanteVta implements Serializable {
         this.codClient = codClient;
     }
 
-    public Date getFechaIngreso() {
-        return fechaIngreso;
+    public Date getFechaEmis() {
+        return fechaEmis;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
+    public void setFechaEmis(Date fechaEmis) {
+        this.fechaEmis = fechaEmis;
     }
 
     public String getHoraIngreso() {

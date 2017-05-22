@@ -1,6 +1,6 @@
 package com.designfreed.repository;
 
-import com.designfreed.model.ComprobanteVtaNdc;
+import com.designfreed.entities.ComprobanteVtaNdc;
 import org.springframework.stereotype.Repository;
 
 @Repository

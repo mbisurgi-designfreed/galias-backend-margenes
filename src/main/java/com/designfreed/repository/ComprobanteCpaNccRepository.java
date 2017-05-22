@@ -1,6 +1,6 @@
 package com.designfreed.repository;
 
-import com.designfreed.model.ComprobanteCpaNcc;
+import com.designfreed.entities.ComprobanteCpaNcc;
 import org.springframework.stereotype.Repository;
 
 @Repository
