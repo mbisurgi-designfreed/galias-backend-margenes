@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: jpa_repository
+  datasource:
+    url: jdbc:sqlserver://centrocompartido.engux.com.ar\WIN-64GLNJ8DGA\AXSQLEXPRESS:1550;databaseName=Galias_Gestion
+    username: sa
+    password: Axoft1988
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+          ddl-auto: none
+          naming:
+            implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2008Dialect
