@@ -4,6 +4,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("NDB")
-public class ComprobanteVtaNd extends ComprobanteVta{
+@DiscriminatorValue("N/C")
+public class ComprobanteVtaNcc extends ComprobanteVta {
 }

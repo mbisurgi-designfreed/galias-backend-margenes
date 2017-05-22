@@ -28,13 +28,13 @@ public abstract class ComprobanteVta implements Serializable {
     @Column(name = "N_COMP")
     private String nComp;
 
-    @Column(name = "T_COMP")
-    private String tComp;
+    @Column(name = "TCOMP_IN_V")
+    private String tCompInV;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumns({
             @JoinColumn(name = "N_COMP", referencedColumnName = "N_COMP", nullable = false, insertable = false, updatable = false),
-            @JoinColumn(name = "T_COMP", referencedColumnName = "T_COMP", nullable = false, insertable = false, updatable = false)
+            @JoinColumn(name = "TCOMP_IN_V", referencedColumnName = "TCOMP_IN_V", nullable = false, insertable = false, updatable = false)
     })
     private List<ItemComprobanteVta> items = new ArrayList<>();
 
@@ -73,13 +73,13 @@ public abstract class ComprobanteVta implements Serializable {
         this.horaIngreso = horaIngreso;
     }
 
-//    public String gettComp() {
-//        return tComp;
-//    }
-//
-//    public void settComp(String tComp) {
-//        this.tComp = tComp;
-//    }
+    public String gettCompInV() {
+        return tCompInV;
+    }
+
+    public void settCompInV(String tCompInV) {
+        this.tCompInV = tCompInV;
+    }
 
     public String getnComp() {
         return nComp;
