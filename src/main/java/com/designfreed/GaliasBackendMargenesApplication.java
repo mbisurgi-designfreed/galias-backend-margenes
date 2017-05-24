@@ -31,7 +31,7 @@ public class GaliasBackendMargenesApplication {
 		List<ComprobanteCpaNc> cpaCreditos = comprobanteCpaNcRepository.findTop100ByCodProvee("100001");
 //		List<ComprobanteCpaNd> cpaDebitos = comprobanteCpaNdRepository.findTop100ByCodProvee("100001");
 
-		List<ComprobanteVtaFac> vtaFacturas = (List<ComprobanteVtaFac>) comprobanteVtaFacRepository.findTop10ByCodClient("100001");
+		List<ComprobanteVtaFac> vtaFacturas = (List<ComprobanteVtaFac>) comprobanteVtaFacRepository.findTop100ByCodClient("100001");
 //		List<ComprobanteVtaNc> vtaCreditos = (List<ComprobanteVtaNc>) comprobanteVtaNcRepository.findAll();
 //		List<ComprobanteVtaNd> vtaDebitos = (List<ComprobanteVtaNd>) comprobanteVtaNdRepository.findAll();
 
@@ -53,9 +53,9 @@ public class GaliasBackendMargenesApplication {
 //			movimientoService.addMovimientosCpa(cpa);
 //		}
 
-//		for (ComprobanteVta vta: vtaFacturas) {
-//			movimientoService.addMovimientosVta(vta);
-//		}
+		for (ComprobanteVta vta: vtaFacturas) {
+			movimientoService.addMovimientosVta(vta);
+		}
 
 //		for (ComprobanteVta vta: vtaCreditos) {
 //			movimientoService.addMovimientosVta(vta);

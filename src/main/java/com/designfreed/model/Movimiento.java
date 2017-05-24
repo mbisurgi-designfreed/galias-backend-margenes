@@ -93,7 +93,9 @@ public class Movimiento {
     @Override
     public String toString() {
         return "Movimiento{" +
-                "comprobante='" + comprobante + '\'' +
+                "modulo='" + modulo + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", comprobante='" + comprobante + '\'' +
                 '}';
     }
 }

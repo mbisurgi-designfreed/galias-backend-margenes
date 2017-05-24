@@ -189,13 +189,15 @@ public class MovimientoServiceImpl implements MovimientoService {
                                 .findFirst()
                                 .orElse(null);
 
-                        ItemMovimiento item2 = mov2.getItems().stream()
-                                .filter(i -> item1.getArticulo().equals(i.getArticulo()))
-                                .findFirst()
-                                .orElse(null);
+                        if (mov2 != null) {
+                            ItemMovimiento item2 = mov2.getItems().stream()
+                                    .filter(i -> item1.getArticulo().equals(i.getArticulo()))
+                                    .findFirst()
+                                    .orElse(null);
 
-                        if (item2 != null) {
-                            item2.setCantidadDisponible(item2.getCantidadDisponible() - item1.getCantidad());
+                            if (item2 != null) {
+                                item2.setCantidadDisponible(item2.getCantidadDisponible() - item1.getCantidad());
+                            }
                         }
                     }
                 }
@@ -277,7 +279,11 @@ public class MovimientoServiceImpl implements MovimientoService {
 
     private void orderMovimientos() {
         movimientos.sort(
-                Comparator.comparing(Movimiento::getFechaIngreso).thenComparing(Movimiento::getHoraIngreso)
+                Comparator
+                        .comparing(Movimiento::getModulo)
+                        .thenComparing(Movimiento::getTipo)
+                        .thenComparing(Movimiento::getFechaIngreso)
+                        .thenComparing(Movimiento::getHoraIngreso)
         );
     }
 }

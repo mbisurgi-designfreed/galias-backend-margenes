@@ -8,5 +8,5 @@ import java.util.List;
 
 @NoRepositoryBean
 public interface ComprobanteVtaRepository<T, ID extends Serializable> extends CrudRepository<T, ID> {
-    List<T> findTop10ByCodClient(String codClient);
+    List<T> findTop100ByCodClient(String codClient);
 }
