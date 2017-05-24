@@ -4,14 +4,16 @@ public class ItemMovimiento {
     private String articulo;
     private Integer cantidad;
     private Double precio;
+    private Integer cantidadDisponible;
 
     public ItemMovimiento() {
     }
 
-    public ItemMovimiento(String articulo, Integer cantidad, Double precio) {
+    public ItemMovimiento(String articulo, Integer cantidad, Double precio, Integer cantidadDisponible) {
         this.articulo = articulo;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.cantidadDisponible = cantidadDisponible;
     }
 
     public String getArticulo() {
@@ -36,5 +38,13 @@ public class ItemMovimiento {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public Integer getCantidadDisponible() {
+        return cantidadDisponible;
+    }
+
+    public void setCantidadDisponible(Integer cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
     }
 }

@@ -1,6 +1,7 @@
 package com.designfreed;
 
 import com.designfreed.entities.*;
+import com.designfreed.model.Margen;
 import com.designfreed.model.Movimiento;
 import com.designfreed.repository.*;
 import com.designfreed.services.MovimientoService;
@@ -26,47 +27,51 @@ public class GaliasBackendMargenesApplication {
 		ComprobanteVtaNcRepository comprobanteVtaNcRepository = app.getBean(ComprobanteVtaNcRepository.class);
 		ComprobanteVtaNdRepository comprobanteVtaNdRepository = app.getBean(ComprobanteVtaNdRepository.class);
 
-//		List<ComprobanteCpaFac> cpaFacturas = comprobanteCpaFacRepository.findByCodProvee("100001");
-		List<ComprobanteCpaNc> cpaCreditos = comprobanteCpaNcRepository.findByCodProvee("100001");
-//		List<ComprobanteCpaNd> cpaDebitos = comprobanteCpaNdRepository.findByCodProvee("100001");
-//
-//		List<ComprobanteVtaFac> vtaFacturas = (List<ComprobanteVtaFac>) comprobanteVtaFacRepository.findAll();
+		List<ComprobanteCpaFac> cpaFacturas = comprobanteCpaFacRepository.findTop10ByCodProvee("100001");
+//		List<ComprobanteCpaNc> cpaCreditos = comprobanteCpaNcRepository.findTop10ByCodProvee("100001");
+//		List<ComprobanteCpaNd> cpaDebitos = comprobanteCpaNdRepository.findTop10ByCodProvee("100001");
+
+		List<ComprobanteVtaFac> vtaFacturas = (List<ComprobanteVtaFac>) comprobanteVtaFacRepository.findTop10ByCodClient("100001");
 //		List<ComprobanteVtaNc> vtaCreditos = (List<ComprobanteVtaNc>) comprobanteVtaNcRepository.findAll();
 //		List<ComprobanteVtaNd> vtaDebitos = (List<ComprobanteVtaNd>) comprobanteVtaNdRepository.findAll();
 
-//		System.out.println(cpaFacturas);
-		System.out.println(cpaCreditos);
-//
+		System.out.println(cpaFacturas);
+//		System.out.println(cpaCreditos);
 
-//		MovimientoService movimientoService = app.getBean(MovimientoService.class);
-//
-//		for (ComprobanteCpa cpa: cpaFacturas) {
-//			movimientoService.addMovimientosCpa(cpa);
-//		}
+
+		MovimientoService movimientoService = app.getBean(MovimientoService.class);
+
+		for (ComprobanteCpa cpa: cpaFacturas) {
+			movimientoService.addMovimientosCpa(cpa);
+		}
 //
 //		for (ComprobanteCpa cpa: cpaCreditos) {
 //			movimientoService.addMovimientosCpa(cpa);
 //		}
-//
+
 //		for (ComprobanteCpa cpa: cpaDebitos) {
 //			movimientoService.addMovimientosCpa(cpa);
 //		}
-//
-//		for (ComprobanteVta vta: vtaFacturas) {
-//			movimientoService.addMovimientosVta(vta);
-//		}
-//
+
+		for (ComprobanteVta vta: vtaFacturas) {
+			movimientoService.addMovimientosVta(vta);
+		}
+
 //		for (ComprobanteVta vta: vtaCreditos) {
 //			movimientoService.addMovimientosVta(vta);
 //		}
-//
+
 //		for (ComprobanteVta vta: vtaDebitos) {
 //			movimientoService.addMovimientosVta(vta);
 //		}
-//
-//		List<Movimiento> movimientos = movimientoService.getMovimientos();
-//
-//		System.out.println(movimientos);
+
+		List<Movimiento> movimientos = movimientoService.getMovimientos();
+
+		movimientoService.generarMargenes();
+
+		List<Margen> margenes = movimientoService.getMargenes();
+
+		System.out.println(margenes);
 	}
 
 }
