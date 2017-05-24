@@ -136,7 +136,7 @@ public class MovimientoServiceImpl implements MovimientoService {
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
-                    Double precioVta = item.getPrecio() * -1;
+                    Double precioVta = item.getPrecio() * 1;
                     String comprobanteCpa = null;
                     Double precioCpa = 0D;
 
@@ -150,9 +150,37 @@ public class MovimientoServiceImpl implements MovimientoService {
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
-                    Double precioVta = item.getPrecio() * 1;
+                    Double precioVta = item.getPrecio() * -1;
                     String comprobanteCpa = null;
                     Double precioCpa = 0D;
+
+                    margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
+                }
+            }
+
+            if (mov1.getModulo().equals("CPA") && mov1.getTipo().equals("NCC")) {
+                for (ItemMovimiento item: mov1.getItems()) {
+                    Date fecha = mov1.getFechaIngreso();
+                    String articulo = item.getArticulo();
+                    Integer cantidad = item.getCantidad();
+                    String comprobanteVta = null;
+                    Double precioVta = 0D;
+                    String comprobanteCpa = mov1.getTipo() + mov1.getComprobante();
+                    Double precioCpa = item.getPrecio() * 1;
+
+                    margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
+                }
+            }
+
+            if (mov1.getModulo().equals("CPA") && mov1.getTipo().equals("NDC")) {
+                for (ItemMovimiento item: mov1.getItems()) {
+                    Date fecha = mov1.getFechaIngreso();
+                    String articulo = item.getArticulo();
+                    Integer cantidad = item.getCantidad();
+                    String comprobanteVta = null;
+                    Double precioVta = 0D;
+                    String comprobanteCpa = mov1.getTipo() + mov1.getComprobante();
+                    Double precioCpa = item.getPrecio() * -1;
 
                     margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
                 }
