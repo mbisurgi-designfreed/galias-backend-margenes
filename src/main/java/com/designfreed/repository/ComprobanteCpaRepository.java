@@ -7,5 +7,5 @@ import java.util.List;
 
 @NoRepositoryBean
 public interface ComprobanteCpaRepository<T, ID extends Serializable> extends CrudRepository<T, ID> {
-    List<T> findTop10ByCodProvee(String codProvee);
+    List<T> findTop100ByCodProvee(String codProvee);
 }

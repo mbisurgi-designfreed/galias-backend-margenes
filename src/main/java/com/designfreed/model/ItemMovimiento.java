@@ -47,4 +47,14 @@ public class ItemMovimiento {
     public void setCantidadDisponible(Integer cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
     }
+
+    @Override
+    public String toString() {
+        return "ItemMovimiento{" +
+                "articulo='" + articulo + '\'' +
+                ", cantidad=" + cantidad +
+                ", precio=" + precio +
+                ", cantidadDisponible=" + cantidadDisponible +
+                '}';
+    }
 }

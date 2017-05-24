@@ -4,6 +4,8 @@ import com.designfreed.entities.*;
 import com.designfreed.model.ItemMovimiento;
 import com.designfreed.model.Margen;
 import com.designfreed.model.Movimiento;
+import com.designfreed.repository.ImputacionCpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +17,13 @@ import java.util.List;
 public class MovimientoServiceImpl implements MovimientoService {
     private List<Movimiento> movimientos = new ArrayList<>();
     private List<Margen> margenes = new ArrayList<>();
+
+    private ImputacionCpaRepository imputacionCpaRepository;
+
+    @Autowired
+    public void setImputacionCpaRepository(ImputacionCpaRepository imputacionCpaRepository) {
+        this.imputacionCpaRepository = imputacionCpaRepository;
+    }
 
     @Override
     public List<Movimiento> getMovimientos() {
@@ -38,6 +47,12 @@ public class MovimientoServiceImpl implements MovimientoService {
 
         if (tipo != null) {
             Movimiento mov = new Movimiento("CPA", tipo, entidad, fechaIngreso, horaIngreso, comprobante);
+
+            if (tipo.equals("N/C")) {
+                for (ImputacionCpa imp: imputacionCpaRepository.findByNCompCanAndTCompCan(comprobante, tipo)) {
+                    mov.getImputaciones().add(imp.getnCompFac());
+                }
+            }
 
             for (ItemComprobanteCpa item: cpa.getItems()) {
                 String articulo = item.getCodArticu();
@@ -130,6 +145,14 @@ public class MovimientoServiceImpl implements MovimientoService {
                 }
             }
 
+            if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("N/C")) {
+
+            }
+
+            if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("N/D")) {
+
+            }
+
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("NCC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
                     Date fecha = mov1.getFechaIngreso();
@@ -155,6 +178,26 @@ public class MovimientoServiceImpl implements MovimientoService {
                     Double precioCpa = 0D;
 
                     margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
+                }
+            }
+
+            if (mov1.getModulo().equals("CPA") && mov1.getTipo().equals("N/C")) {
+                for (ItemMovimiento item1: mov1.getItems()) {
+                    for (String imp: mov1.getImputaciones()) {
+                        Movimiento mov2 = movimientos.stream()
+                                .filter(m -> imp.equals(m.getComprobante()))
+                                .findFirst()
+                                .orElse(null);
+
+                        ItemMovimiento item2 = mov2.getItems().stream()
+                                .filter(i -> item1.getArticulo().equals(i.getArticulo()))
+                                .findFirst()
+                                .orElse(null);
+
+                        if (item2 != null) {
+                            item2.setCantidadDisponible(item2.getCantidadDisponible() - item1.getCantidad());
+                        }
+                    }
                 }
             }
 

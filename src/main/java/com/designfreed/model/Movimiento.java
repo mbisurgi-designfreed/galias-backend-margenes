@@ -1,8 +1,6 @@
 package com.designfreed.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Movimiento {
     private String modulo;
@@ -11,6 +9,7 @@ public class Movimiento {
     private Date fechaIngreso;
     private String horaIngreso;
     private String comprobante;
+    private List<String> imputaciones;
     private List<ItemMovimiento> items;
 
     public Movimiento() {
@@ -23,6 +22,7 @@ public class Movimiento {
         this.fechaIngreso = fechaIngreso;
         this.horaIngreso = horaIngreso;
         this.comprobante = comprobante;
+        this.imputaciones = new ArrayList<>();
         this.items = new ArrayList<>();
     }
 
@@ -74,11 +74,26 @@ public class Movimiento {
         this.comprobante = comprobante;
     }
 
+    public List<String> getImputaciones() {
+        return imputaciones;
+    }
+
+    public void setImputaciones(List<String> imputaciones) {
+        this.imputaciones = imputaciones;
+    }
+
     public List<ItemMovimiento> getItems() {
         return items;
     }
 
     public void setItems(List<ItemMovimiento> items) {
         this.items = items;
+    }
+
+    @Override
+    public String toString() {
+        return "Movimiento{" +
+                "comprobante='" + comprobante + '\'' +
+                '}';
     }
 }
