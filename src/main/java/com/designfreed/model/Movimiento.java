@@ -6,8 +6,8 @@ public class Movimiento {
     private String modulo;
     private String tipo;
     private String entidad;
-    private Date fechaIngreso;
-    private String horaIngreso;
+    private Date fecha;
+    private String hora;
     private String comprobante;
     private List<String> imputaciones;
     private List<ItemMovimiento> items;
@@ -19,8 +19,8 @@ public class Movimiento {
         this.modulo = modulo;
         this.tipo = tipo;
         this.entidad = entidad;
-        this.fechaIngreso = fechaIngreso;
-        this.horaIngreso = horaIngreso;
+        this.fecha = fechaIngreso;
+        this.hora = horaIngreso;
         this.comprobante = comprobante;
         this.imputaciones = new ArrayList<>();
         this.items = new ArrayList<>();
@@ -50,20 +50,20 @@ public class Movimiento {
         this.entidad = entidad;
     }
 
-    public Date getFechaIngreso() {
-        return fechaIngreso;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public String getHoraIngreso() {
-        return horaIngreso;
+    public String getHora() {
+        return hora;
     }
 
-    public void setHoraIngreso(String horaIngreso) {
-        this.horaIngreso = horaIngreso;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public String getComprobante() {

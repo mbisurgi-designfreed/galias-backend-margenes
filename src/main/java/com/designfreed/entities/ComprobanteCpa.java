@@ -23,10 +23,10 @@ public abstract  class ComprobanteCpa implements Serializable {
     private String codProvee;
 
     @Column(name = "FECHA_EMIS")
-    private Date fechaEmis;
+    private Date fecha;
 
     @Column(name = "HORA_INGRESO")
-    private String horaIngreso;
+    private String hora;
 
     @Column(name = "N_COMP")
     private String nComp;
@@ -62,20 +62,20 @@ public abstract  class ComprobanteCpa implements Serializable {
         this.codProvee = codProvee;
     }
 
-    public Date getFechaEmis() {
-        return fechaEmis;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaEmis(Date fechaEmis) {
-        this.fechaEmis = fechaEmis;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public String getHoraIngreso() {
-        return horaIngreso;
+    public String getHora() {
+        return hora;
     }
 
-    public void setHoraIngreso(String horaIngreso) {
-        this.horaIngreso = horaIngreso;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public String getnComp() {

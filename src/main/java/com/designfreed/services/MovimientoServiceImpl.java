@@ -5,13 +5,13 @@ import com.designfreed.model.ItemMovimiento;
 import com.designfreed.model.Margen;
 import com.designfreed.model.Movimiento;
 import com.designfreed.repository.ImputacionCpaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
@@ -38,11 +38,28 @@ public class MovimientoServiceImpl implements MovimientoService {
     }
 
     @Override
+    public void addSaldosIniciales() {
+        try {
+            Movimiento[] movs = new ObjectMapper().readValue(new File("stock.json"), Movimiento[].class);
+
+            for (Movimiento mov: movs) {
+                mov.getItems().forEach(i -> {
+                    i.setCantidadDisponible(i.getCantidad());
+                });
+            }
+
+            movimientos.addAll(Arrays.asList(movs));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void addMovimientosCpa(ComprobanteCpa cpa) {
         String tipo = getTipoCpa(cpa);
         String entidad = cpa.getCodProvee();
-        Date fechaIngreso = cpa.getFechaEmis();
-        String horaIngreso = cpa.getHoraIngreso();
+        Date fechaIngreso = cpa.getFecha();
+        String horaIngreso = cpa.getHora();
         String comprobante = cpa.getnComp();
 
         if (tipo != null) {
@@ -110,7 +127,7 @@ public class MovimientoServiceImpl implements MovimientoService {
                                 }
 
                                 if (item1.getArticulo().equals(item2.getArticulo()) && item2.getCantidadDisponible() > 0) {
-                                    Date fecha = mov1.getFechaIngreso();
+                                    Date fecha = mov1.getFecha();
                                     String articulo = item1.getArticulo();
                                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
                                     Double precioVta = item1.getPrecio();
@@ -155,7 +172,7 @@ public class MovimientoServiceImpl implements MovimientoService {
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("NCC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
-                    Date fecha = mov1.getFechaIngreso();
+                    Date fecha = mov1.getFecha();
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
@@ -169,7 +186,7 @@ public class MovimientoServiceImpl implements MovimientoService {
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("NDC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
-                    Date fecha = mov1.getFechaIngreso();
+                    Date fecha = mov1.getFecha();
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
@@ -205,7 +222,7 @@ public class MovimientoServiceImpl implements MovimientoService {
 
             if (mov1.getModulo().equals("CPA") && mov1.getTipo().equals("NCC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
-                    Date fecha = mov1.getFechaIngreso();
+                    Date fecha = mov1.getFecha();
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
                     String comprobanteVta = null;
@@ -219,7 +236,7 @@ public class MovimientoServiceImpl implements MovimientoService {
 
             if (mov1.getModulo().equals("CPA") && mov1.getTipo().equals("NDC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
-                    Date fecha = mov1.getFechaIngreso();
+                    Date fecha = mov1.getFecha();
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
                     String comprobanteVta = null;
@@ -282,8 +299,8 @@ public class MovimientoServiceImpl implements MovimientoService {
                 Comparator
                         .comparing(Movimiento::getModulo)
                         .thenComparing(Movimiento::getTipo)
-                        .thenComparing(Movimiento::getFechaIngreso)
-                        .thenComparing(Movimiento::getHoraIngreso)
+                        .thenComparing(Movimiento::getFecha)
+                        .thenComparing(Movimiento::getHora)
         );
     }
 }

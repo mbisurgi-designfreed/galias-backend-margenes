@@ -12,6 +12,8 @@ public interface MovimientoService {
 
     List<Margen> getMargenes();
 
+    void addSaldosIniciales();
+
     void addMovimientosCpa(ComprobanteCpa cpa);
 
     void addMovimientosVta(ComprobanteVta vta);

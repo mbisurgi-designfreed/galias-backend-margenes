@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -27,9 +30,18 @@ public class GaliasBackendMargenesApplication {
 		ComprobanteVtaNcRepository comprobanteVtaNcRepository = app.getBean(ComprobanteVtaNcRepository.class);
 		ComprobanteVtaNdRepository comprobanteVtaNdRepository = app.getBean(ComprobanteVtaNdRepository.class);
 
-		List<ComprobanteCpaFac> cpaFacturas = comprobanteCpaFacRepository.findTop100ByCodProvee("100001");
-		List<ComprobanteCpaNc> cpaCreditos = comprobanteCpaNcRepository.findTop100ByCodProvee("100001");
-//		List<ComprobanteCpaNd> cpaDebitos = comprobanteCpaNdRepository.findTop100ByCodProvee("100001");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = null;
+
+		try {
+			fecha = formatter.parse("01/01/2017");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		List<ComprobanteCpaFac> cpaFacturas = comprobanteCpaFacRepository.findTop100ByCodProveeAndFechaAfter("100001", fecha);
+		List<ComprobanteCpaNc> cpaCreditos = comprobanteCpaNcRepository.findTop100ByCodProveeAndFechaAfter("100001", fecha);
+//		List<ComprobanteCpaNd> cpaDebitos = comprobanteCpaNdRepository.findTop100ByCodProveeAndFechaAfter("100001");
 
 		List<ComprobanteVtaFac> vtaFacturas = (List<ComprobanteVtaFac>) comprobanteVtaFacRepository.findTop100ByCodClient("100001");
 //		List<ComprobanteVtaNc> vtaCreditos = (List<ComprobanteVtaNc>) comprobanteVtaNcRepository.findAll();
@@ -40,6 +52,8 @@ public class GaliasBackendMargenesApplication {
 
 
 		MovimientoService movimientoService = app.getBean(MovimientoService.class);
+
+		movimientoService.addSaldosIniciales();
 
 		for (ComprobanteCpa cpa: cpaFacturas) {
 			movimientoService.addMovimientosCpa(cpa);
