@@ -5,6 +5,7 @@ import com.designfreed.model.ItemMovimiento;
 import com.designfreed.model.Margen;
 import com.designfreed.model.Movimiento;
 import com.designfreed.repository.ImputacionCpaRepository;
+import com.designfreed.repository.ImputacionVtaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
@@ -19,10 +21,16 @@ public class MovimientoServiceImpl implements MovimientoService {
     private List<Margen> margenes = new ArrayList<>();
 
     private ImputacionCpaRepository imputacionCpaRepository;
+    private ImputacionVtaRepository imputacionVtaRepository;
 
     @Autowired
     public void setImputacionCpaRepository(ImputacionCpaRepository imputacionCpaRepository) {
         this.imputacionCpaRepository = imputacionCpaRepository;
+    }
+
+    @Autowired
+    public void setImputacionVtaRepository(ImputacionVtaRepository imputacionVtaRepository) {
+        this.imputacionVtaRepository = imputacionVtaRepository;
     }
 
     @Override
@@ -43,9 +51,7 @@ public class MovimientoServiceImpl implements MovimientoService {
             Movimiento[] movs = new ObjectMapper().readValue(new File("stock.json"), Movimiento[].class);
 
             for (Movimiento mov: movs) {
-                mov.getItems().forEach(i -> {
-                    i.setCantidadDisponible(i.getCantidad());
-                });
+                mov.getItems().forEach((i) -> i.setCantidadDisponible(i.getCantidad()));
             }
 
             movimientos.addAll(Arrays.asList(movs));
@@ -87,12 +93,28 @@ public class MovimientoServiceImpl implements MovimientoService {
     public void addMovimientosVta(ComprobanteVta vta) {
         String tipo = getTipoVta(vta);
         String entidad = vta.getCodClient();
-        Date fechaIngreso = vta.getFechaEmis();
-        String horaIngreso = vta.getHoraIngreso();
+        Date fechaIngreso = vta.getFecha();
+        String horaIngreso = vta.getHora();
         String comprobante = vta.getnComp();
 
         if (tipo != null) {
             Movimiento mov = new Movimiento("VTA", tipo, entidad, fechaIngreso, horaIngreso, comprobante);
+
+            if (tipo.equals("N/C") || tipo.equals("N/D")) {
+                String tip = "";
+
+                if (tipo.equals("N/C")) {
+                    tip = "NCR";
+                }
+
+                if (tipo.equals("N/D")) {
+                    tip = "NDB";
+                }
+
+                for (ImputacionVta imp: imputacionVtaRepository.findByNCompCanAndTCompCan(comprobante, tip)) {
+                    mov.getImputaciones().add(imp.getnCompFac());
+                }
+            }
 
             for (ItemComprobanteVta item: vta.getItems()) {
                 String articulo = item.getCodArticu();
@@ -163,7 +185,47 @@ public class MovimientoServiceImpl implements MovimientoService {
             }
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("N/C")) {
-
+//                List<Margen> mar = new ArrayList<>();
+//
+//                for (String imp: mov1.getImputaciones()) {
+//                    mar = margenes.stream()
+//                            .filter(m -> m.getComprobanteVta().equals("N/C" + imp))
+//                            .collect(Collectors.toList());
+//                }
+//
+//                for (ItemMovimiento item1: mov1.getItems()) {
+//                    for (String imp: mov1.getImputaciones()) {
+//                        Movimiento mov2 = movimientos.stream()
+//                                .filter(m -> imp.equals(m.getComprobante()))
+//                                .findFirst()
+//                                .orElse(null);
+//
+//                        if (mov2 != null) {
+//                            ItemMovimiento item2 = mov2.getItems().stream()
+//                                    .filter(i -> item1.getArticulo().equals(i.getArticulo()))
+//                                    .findFirst()
+//                                    .orElse(null);
+//
+//                            if (item2 != null) {
+//                                item2.setCantidadDisponible(item2.getCantidadDisponible() + item1.getCantidad());
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                if (!mar.isEmpty()) {
+//                    mar.forEach(m -> {
+//                        Date fecha = m.getFecha();
+//                        String articulo = m.getArticulo();
+//                        Integer cantidad = m.getCantidad() * -1;
+//                        String comprobanteVta = m.getComprobanteVta();
+//                        Double precioVta = m.getPrecioVta();
+//                        String comprobanteCpa = m.getComprobanteCpa();
+//                        Double precioCpa = m.getPrecioCpa();
+//
+//                        margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
+//                    });
+//                }
             }
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("N/D")) {
@@ -176,7 +238,7 @@ public class MovimientoServiceImpl implements MovimientoService {
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
-                    Double precioVta = item.getPrecio() * 1;
+                    Double precioVta = item.getPrecio() * -1;
                     String comprobanteCpa = null;
                     Double precioCpa = 0D;
 
@@ -190,7 +252,7 @@ public class MovimientoServiceImpl implements MovimientoService {
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
-                    Double precioVta = item.getPrecio() * -1;
+                    Double precioVta = item.getPrecio() * 1;
                     String comprobanteCpa = null;
                     Double precioCpa = 0D;
 
@@ -228,7 +290,7 @@ public class MovimientoServiceImpl implements MovimientoService {
                     String comprobanteVta = null;
                     Double precioVta = 0D;
                     String comprobanteCpa = mov1.getTipo() + mov1.getComprobante();
-                    Double precioCpa = item.getPrecio() * 1;
+                    Double precioCpa = item.getPrecio() * -1;
 
                     margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
                 }
@@ -242,12 +304,25 @@ public class MovimientoServiceImpl implements MovimientoService {
                     String comprobanteVta = null;
                     Double precioVta = 0D;
                     String comprobanteCpa = mov1.getTipo() + mov1.getComprobante();
-                    Double precioCpa = item.getPrecio() * -1;
+                    Double precioCpa = item.getPrecio() * 1;
 
                     margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
                 }
             }
         }
+
+        Float ventas = 0F;
+        Float compras = 0F;
+
+        for (Margen margen: margenes) {
+            ventas = ventas + Float.valueOf(String.valueOf(margen.getCantidad() * margen.getPrecioVta()));
+            compras = compras + Float.valueOf(String.valueOf(margen.getCantidad() * margen.getPrecioCpa()));
+        }
+
+        System.out.println(String.format("%f", ventas));
+        System.out.println(String.format("%f", compras));
+        System.out.println(ventas - compras);
+        System.out.println((ventas / compras) - 1);
     }
 
     private String getTipoCpa(ComprobanteCpa cpa) {

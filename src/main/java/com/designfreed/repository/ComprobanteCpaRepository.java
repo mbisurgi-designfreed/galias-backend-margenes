@@ -8,5 +8,5 @@ import java.util.List;
 
 @NoRepositoryBean
 public interface ComprobanteCpaRepository<T, ID extends Serializable> extends CrudRepository<T, ID> {
-    List<T> findTop100ByCodProveeAndFechaAfter(String codProvee, Date fecha);
+    List<T> findByCodProveeAndFechaBetween(String codProvee, Date desde, Date hasta);
 }

@@ -31,21 +31,23 @@ public class GaliasBackendMargenesApplication {
 		ComprobanteVtaNdRepository comprobanteVtaNdRepository = app.getBean(ComprobanteVtaNdRepository.class);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		Date fecha = null;
+		Date desde = null;
+		Date hasta = null;
 
 		try {
-			fecha = formatter.parse("01/01/2017");
+			desde = formatter.parse("01/01/2017");
+			hasta = formatter.parse("30/04/2017");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
-		List<ComprobanteCpaFac> cpaFacturas = comprobanteCpaFacRepository.findTop100ByCodProveeAndFechaAfter("100001", fecha);
-		List<ComprobanteCpaNc> cpaCreditos = comprobanteCpaNcRepository.findTop100ByCodProveeAndFechaAfter("100001", fecha);
-//		List<ComprobanteCpaNd> cpaDebitos = comprobanteCpaNdRepository.findTop100ByCodProveeAndFechaAfter("100001");
+		List<ComprobanteCpaFac> cpaFacturas = comprobanteCpaFacRepository.findByCodProveeAndFechaBetween("100001", desde, hasta);
+		List<ComprobanteCpaNc> cpaCreditos = comprobanteCpaNcRepository.findByCodProveeAndFechaBetween("100001", desde, hasta);
+		List<ComprobanteCpaNd> cpaDebitos = comprobanteCpaNdRepository.findByCodProveeAndFechaBetween("100001", desde, hasta);
 
-		List<ComprobanteVtaFac> vtaFacturas = (List<ComprobanteVtaFac>) comprobanteVtaFacRepository.findTop100ByCodClient("100001");
-//		List<ComprobanteVtaNc> vtaCreditos = (List<ComprobanteVtaNc>) comprobanteVtaNcRepository.findAll();
-//		List<ComprobanteVtaNd> vtaDebitos = (List<ComprobanteVtaNd>) comprobanteVtaNdRepository.findAll();
+		List<ComprobanteVtaFac> vtaFacturas = comprobanteVtaFacRepository.findByFechaBetween(desde, hasta);
+		List<ComprobanteVtaNc> vtaCreditos = comprobanteVtaNcRepository.findByFechaBetween(desde, hasta);
+		List<ComprobanteVtaNd> vtaDebitos = comprobanteVtaNdRepository.findByFechaBetween(desde, hasta);
 
 		System.out.println(cpaFacturas);
 //		System.out.println(cpaCreditos);
@@ -63,21 +65,21 @@ public class GaliasBackendMargenesApplication {
 			movimientoService.addMovimientosCpa(cpa);
 		}
 
-//		for (ComprobanteCpa cpa: cpaDebitos) {
-//			movimientoService.addMovimientosCpa(cpa);
-//		}
+		for (ComprobanteCpa cpa: cpaDebitos) {
+			movimientoService.addMovimientosCpa(cpa);
+		}
 
 		for (ComprobanteVta vta: vtaFacturas) {
 			movimientoService.addMovimientosVta(vta);
 		}
 
-//		for (ComprobanteVta vta: vtaCreditos) {
-//			movimientoService.addMovimientosVta(vta);
-//		}
+		for (ComprobanteVta vta: vtaCreditos) {
+			movimientoService.addMovimientosVta(vta);
+		}
 
-//		for (ComprobanteVta vta: vtaDebitos) {
-//			movimientoService.addMovimientosVta(vta);
-//		}
+		for (ComprobanteVta vta: vtaDebitos) {
+			movimientoService.addMovimientosVta(vta);
+		}
 
 		List<Movimiento> movimientos = movimientoService.getMovimientos();
 
