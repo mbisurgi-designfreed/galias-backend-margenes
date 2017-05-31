@@ -25,10 +25,13 @@ public class GaliasBackendMargenesApplication {
 		ComprobanteCpaFacRepository comprobanteCpaFacRepository = app.getBean(ComprobanteCpaFacRepository.class);
 		ComprobanteCpaNcRepository comprobanteCpaNcRepository = app.getBean(ComprobanteCpaNcRepository.class);
 		ComprobanteCpaNdRepository comprobanteCpaNdRepository = app.getBean(ComprobanteCpaNdRepository.class);
+		ComprobanteCpaNccRepository comprobanteCpaNccRepository = app.getBean(ComprobanteCpaNccRepository.class);
 
 		ComprobanteVtaFacRepository comprobanteVtaFacRepository = app.getBean(ComprobanteVtaFacRepository.class);
 		ComprobanteVtaNcRepository comprobanteVtaNcRepository = app.getBean(ComprobanteVtaNcRepository.class);
 		ComprobanteVtaNdRepository comprobanteVtaNdRepository = app.getBean(ComprobanteVtaNdRepository.class);
+		ComprobanteVtaNccRepository comprobanteVtaNccRepository = app.getBean(ComprobanteVtaNccRepository.class);
+		ComprobanteVtaNdcRepository comprobanteVtaNdcRepository = app.getBean(ComprobanteVtaNdcRepository.class);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date desde = null;
@@ -44,14 +47,13 @@ public class GaliasBackendMargenesApplication {
 		List<ComprobanteCpaFac> cpaFacturas = comprobanteCpaFacRepository.findByCodProveeAndFechaBetween("100001", desde, hasta);
 		List<ComprobanteCpaNc> cpaCreditos = comprobanteCpaNcRepository.findByCodProveeAndFechaBetween("100001", desde, hasta);
 		List<ComprobanteCpaNd> cpaDebitos = comprobanteCpaNdRepository.findByCodProveeAndFechaBetween("100001", desde, hasta);
+		List<ComprobanteCpaNcc> cpaCreditosConceptos = comprobanteCpaNccRepository.findByCodProveeAndFechaBetween("100001", desde, hasta);
 
 		List<ComprobanteVtaFac> vtaFacturas = comprobanteVtaFacRepository.findByFechaBetween(desde, hasta);
 		List<ComprobanteVtaNc> vtaCreditos = comprobanteVtaNcRepository.findByFechaBetween(desde, hasta);
 		List<ComprobanteVtaNd> vtaDebitos = comprobanteVtaNdRepository.findByFechaBetween(desde, hasta);
-
-		System.out.println(cpaFacturas);
-//		System.out.println(cpaCreditos);
-
+		List<ComprobanteVtaNcc> vtaCreditosConceptos = comprobanteVtaNccRepository.findByFechaBetween(desde, hasta);
+		List<ComprobanteVtaNdc> vtaDebitosConceptos = comprobanteVtaNdcRepository.findByFechaBetween(desde, hasta);
 
 		MovimientoService movimientoService = app.getBean(MovimientoService.class);
 
@@ -69,6 +71,10 @@ public class GaliasBackendMargenesApplication {
 			movimientoService.addMovimientosCpa(cpa);
 		}
 
+		for (ComprobanteCpa cpa: cpaCreditosConceptos) {
+			movimientoService.addMovimientosCpa(cpa);
+		}
+
 		for (ComprobanteVta vta: vtaFacturas) {
 			movimientoService.addMovimientosVta(vta);
 		}
@@ -78,6 +84,14 @@ public class GaliasBackendMargenesApplication {
 		}
 
 		for (ComprobanteVta vta: vtaDebitos) {
+			movimientoService.addMovimientosVta(vta);
+		}
+
+		for (ComprobanteVta vta: vtaCreditosConceptos) {
+			movimientoService.addMovimientosVta(vta);
+		}
+
+		for (ComprobanteVta vta: vtaDebitosConceptos) {
 			movimientoService.addMovimientosVta(vta);
 		}
 

@@ -277,6 +277,8 @@ public class MovimientoServiceImpl implements MovimientoService {
                             if (item2 != null) {
                                 item2.setCantidadDisponible(item2.getCantidadDisponible() - item1.getCantidad());
                             }
+                        } else {
+                            
                         }
                     }
                 }
