@@ -20,6 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
@@ -158,8 +159,8 @@ public class MovimientoServiceImpl implements MovimientoService {
                                 }
 
                                 if (item1.getArticulo().equals(item2.getArticulo()) && item2.getCantidadDisponible() > 0) {
-                                    Date fechaVta = mov1.getFecha();
                                     String articulo = item1.getArticulo();
+                                    Date fechaVta = mov1.getFecha();
                                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
                                     Double precioVta = item1.getPrecio();
                                     Date fechaCpa = mov2.getFecha();
@@ -196,47 +197,67 @@ public class MovimientoServiceImpl implements MovimientoService {
             }
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("N/C")) {
-//                List<Margen> mar = new ArrayList<>();
-//
-//                for (String imp: mov1.getImputaciones()) {
-//                    mar = margenes.stream()
-//                            .filter(m -> m.getComprobanteVta().equals("N/C" + imp))
-//                            .collect(Collectors.toList());
-//                }
-//
-//                for (ItemMovimiento item1: mov1.getItems()) {
-//                    for (String imp: mov1.getImputaciones()) {
-//                        Movimiento mov2 = movimientos.stream()
-//                                .filter(m -> imp.equals(m.getComprobante()))
-//                                .findFirst()
-//                                .orElse(null);
-//
-//                        if (mov2 != null) {
-//                            ItemMovimiento item2 = mov2.getItems().stream()
-//                                    .filter(i -> item1.getArticulo().equals(i.getArticulo()))
-//                                    .findFirst()
-//                                    .orElse(null);
-//
-//                            if (item2 != null) {
-//                                item2.setCantidadDisponible(item2.getCantidadDisponible() + item1.getCantidad());
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                if (!mar.isEmpty()) {
-//                    mar.forEach(m -> {
-//                        Date fecha = m.getFechaVta();
-//                        String articulo = m.getArticulo();
-//                        Integer cantidad = m.getCantidad() * -1;
-//                        String comprobanteVta = m.getComprobanteVta();
-//                        Double precioVta = m.getPrecioVta();
-//                        String comprobanteCpa = m.getComprobanteCpa();
-//                        Double precioCpa = m.getPrecioCpa();
-//
-//                        margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
-//                    });
-//                }
+                for (String imp: mov1.getImputaciones()) {
+                    List<Margen> filtrado1 = margenes.stream()
+                            .filter(m -> m.getComprobanteVta().equals("FAC" + imp))
+                            .collect(Collectors.toList());
+
+                    for (ItemMovimiento item1: mov1.getItems()) {
+                        List<Margen> filtrado2 = filtrado1.stream()
+                                .filter(m -> m.getArticulo().equals(item1.getArticulo()))
+                                .collect(Collectors.toList());
+
+                        Integer cantidad = item1.getCantidad();
+
+                        for (Margen mar: filtrado2) {
+                            if (cantidad == 0) {
+                                break;
+                            }
+
+                            String articulo = mar.getArticulo();
+                            Date fechaVta = mar.getFechaVta();
+                            String comprobanteVta = mar.getComprobanteVta();
+                            Double precioVta = mar.getPrecioVta();
+                            Date fechaCpa = mar.getFechaCpa();
+                            String comprobanteCpa = mar.getComprobanteCpa();
+                            Double precioCpa = mar.getPrecioCpa();
+
+                            Margen anu = new Margen();
+                            anu.setFechaVta(fechaVta);
+                            anu.setArticulo(articulo);
+                            anu.setComprobanteVta(comprobanteVta);
+                            anu.setPrecioVta(precioVta);
+                            anu.setFechaCpa(fechaCpa);
+                            anu.setComprobanteCpa(comprobanteCpa);
+                            anu.setPrecioCpa(precioCpa);
+
+                            if (cantidad <= mar.getCantidad()) {
+                                anu.setCantidad(cantidad * -1);
+                                cantidad = 0;
+                            }
+
+                            if (cantidad > mar.getCantidad()) {
+                                anu.setCantidad(mar.getCantidad() * -1);
+                                cantidad = cantidad - mar.getCantidad();
+                            }
+
+                            Movimiento compra = movimientos.stream()
+                                    .filter(m -> m.getModulo().equals("CPA") && anu.getComprobanteCpa().equals("FAC" + m.getComprobante()))
+                                    .findFirst()
+                                    .orElse(null);
+
+                            if (compra != null) {
+                                for (ItemMovimiento item2: compra.getItems()) {
+                                    if (item2.getArticulo().equals(anu.getArticulo())) {
+                                        item2.setCantidadDisponible(item2.getCantidadDisponible() + anu.getCantidad() * -1);
+                                    }
+                                }
+                            }
+
+                            margenes.add(anu);
+                        }
+                    }
+                }
             }
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("N/D")) {
