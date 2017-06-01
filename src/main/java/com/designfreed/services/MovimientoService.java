@@ -19,4 +19,6 @@ public interface MovimientoService {
     void addMovimientosVta(ComprobanteVta vta);
 
     void generarMargenes();
+
+    void generarExcel();
 }

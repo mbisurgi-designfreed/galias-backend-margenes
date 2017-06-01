@@ -9,8 +9,23 @@
       "items":[
          {
             "articulo":"110004005",
-            "cantidad":9,
-            "precio":909.5067
+            "cantidad":39,
+            "precio":909.5066999999999
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"A004700034151",
+      "items":[
+         {
+            "articulo":"111041181",
+            "cantidad":461,
+            "precio":44.0343
          }
       ]
    },
@@ -24,13 +39,8 @@
       "items":[
          {
             "articulo":"111060082",
-            "cantidad":5202,
-            "precio":23.0579
-         },
-         {
-            "articulo":"111060082",
-            "cantidad":1036,
-            "precio":23.0579
+            "cantidad":6338,
+            "precio":19.28889015462291
          }
       ]
    },
@@ -44,13 +54,8 @@
       "items":[
          {
             "articulo":"111081082",
-            "cantidad":1012,
-            "precio":41.6322
-         },
-         {
-            "articulo":"111081082",
-            "cantidad":790,
-            "precio":41.6322
+            "cantidad":6202,
+            "precio":33.64408036117381
          }
       ]
    },
@@ -110,7 +115,7 @@
          {
             "articulo":"121010144",
             "cantidad":42,
-            "precio":196.6715
+            "precio":196.67149999999998
          },
          {
             "articulo":"122015066",
@@ -174,13 +179,8 @@
       "items":[
          {
             "articulo":"132003093",
-            "cantidad":1759,
-            "precio":424.1583
-         },
-         {
-            "articulo":"132003093",
-            "cantidad":515,
-            "precio":424.1583
+            "cantidad":2274,
+            "precio":328.0978230870712
          }
       ]
    },
@@ -204,7 +204,7 @@
          },
          {
             "articulo":"172810145",
-            "cantidad":359,
+            "cantidad":431,
             "precio":130.07
          },
          {
@@ -214,18 +214,13 @@
          },
          {
             "articulo":"173067145",
-            "cantidad":185,
+            "cantidad":239,
             "precio":87.7235
          },
          {
             "articulo":"173136145",
-            "cantidad":72,
-            "precio":78.4138
-         },
-         {
-            "articulo":"173136145",
-            "cantidad":6,
-            "precio":78.4138
+            "cantidad":78,
+            "precio":72.38196923076923
          }
       ]
    },
@@ -239,13 +234,8 @@
       "items":[
          {
             "articulo":"134322093",
-            "cantidad":184,
-            "precio":386.1583
-         },
-         {
-            "articulo":"134322093",
-            "cantidad":2,
-            "precio":386.1583
+            "cantidad":186,
+            "precio":382.00606021505376
          }
       ]
    },
@@ -259,13 +249,8 @@
       "items":[
          {
             "articulo":"140021015",
-            "cantidad":2986,
-            "precio":222.8065
-         },
-         {
-            "articulo":"140021015",
-            "cantidad":678,
-            "precio":222.8065
+            "cantidad":3772,
+            "precio":182.7580357900318
          }
       ]
    },
@@ -279,12 +264,7 @@
       "items":[
          {
             "articulo":"140140114",
-            "cantidad":144,
-            "precio":0
-         },
-         {
-            "articulo":"140140114",
-            "cantidad":124,
+            "cantidad":268,
             "precio":0
          }
       ]
@@ -299,13 +279,8 @@
       "items":[
          {
             "articulo":"140143114",
-            "cantidad":1651,
-            "precio":128.1062
-         },
-         {
-            "articulo":"140143114",
-            "cantidad":451,
-            "precio":128.1062
+            "cantidad":2102,
+            "precio":100.62004576593719
          }
       ]
    },
@@ -349,13 +324,8 @@
       "items":[
          {
             "articulo":"140190097",
-            "cantidad":11,
-            "precio":410.6766
-         },
-         {
-            "articulo":"140190097",
-            "cantidad":9,
-            "precio":410.6766
+            "cantidad":20,
+            "precio":225.87213000000003
          }
       ]
    },
@@ -414,13 +384,8 @@
       "items":[
          {
             "articulo":"163230490",
-            "cantidad":28,
-            "precio":619.2332
-         },
-         {
-            "articulo":"163230490",
-            "cantidad":8,
-            "precio":619.2332
+            "cantidad":36,
+            "precio":481.62582222222227
          }
       ]
    },
@@ -436,6 +401,66 @@
             "articulo":"163230493",
             "cantidad":72,
             "precio":131.2862
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"A004700033846",
+      "items":[
+         {
+            "articulo":"163250144",
+            "cantidad":31,
+            "precio":301.214
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"A004700034032",
+      "items":[
+         {
+            "articulo":"163260144",
+            "cantidad":40,
+            "precio":289.3766
+         },
+         {
+            "articulo":"172421156",
+            "cantidad":29,
+            "precio":49.1428
+         },
+         {
+            "articulo":"172441156",
+            "cantidad":35,
+            "precio":128.2225
+         },
+         {
+            "articulo":"172461156",
+            "cantidad":25,
+            "precio":161.8192
+         },
+         {
+            "articulo":"172471156",
+            "cantidad":35,
+            "precio":49.1429
+         },
+         {
+            "articulo":"172950022",
+            "cantidad":24,
+            "precio":95.8412
+         },
+         {
+            "articulo":"173068145",
+            "cantidad":222,
+            "precio":92.7165
          }
       ]
    },
@@ -469,53 +494,8 @@
          },
          {
             "articulo":"172980022",
-            "cantidad":2,
-            "precio":136.9167
-         },
-         {
-            "articulo":"172980022",
-            "cantidad":2,
-            "precio":136.9167
-         }
-      ]
-   },
-   {
-      "modulo":"CPA",
-      "tipo":"FAC",
-      "entidad":"100001",
-      "fecha":"2016-12-31T00:00:00.000Z",
-      "hora":"100001",
-      "comprobante":"A004700034032",
-      "items":[
-         {
-            "articulo":"172421156",
-            "cantidad":17,
-            "precio":49.1428
-         },
-         {
-            "articulo":"172441156",
-            "cantidad":35,
-            "precio":128.2225
-         },
-         {
-            "articulo":"172461156",
-            "cantidad":25,
-            "precio":161.8192
-         },
-         {
-            "articulo":"172471156",
-            "cantidad":35,
-            "precio":49.1429
-         },
-         {
-            "articulo":"172950022",
-            "cantidad":24,
-            "precio":95.8412
-         },
-         {
-            "articulo":"173068145",
-            "cantidad":222,
-            "precio":92.7165
+            "cantidad":9,
+            "precio":106.49076666666666
          }
       ]
    },
@@ -684,13 +664,8 @@
       "items":[
          {
             "articulo":"173069145",
-            "cantidad":68,
-            "precio":114.5367
-         },
-         {
-            "articulo":"173069145",
-            "cantidad":12,
-            "precio":114.5367
+            "cantidad":80,
+            "precio":97.356195
          }
       ]
    },
@@ -706,51 +681,6 @@
             "articulo":"173732130",
             "cantidad":10,
             "precio":192.927
-         }
-      ]
-   },
-   {
-      "modulo":"CPA",
-      "tipo":"FAC",
-      "entidad":"100001",
-      "fecha":"2016-12-31T00:00:00.000Z",
-      "hora":"100001",
-      "comprobante":"A004600155947",
-      "items":[
-         {
-            "articulo":"140129015",
-            "cantidad":100,
-            "precio":422.9324
-         }
-      ]
-   },
-   {
-      "modulo":"CPA",
-      "tipo":"FAC",
-      "entidad":"100001",
-      "fecha":"2016-12-31T00:00:00.000Z",
-      "hora":"100001",
-      "comprobante":"A004700031996",
-      "items":[
-         {
-            "articulo":"173044144",
-            "cantidad":9,
-            "precio":196.039
-         }
-      ]
-   },
-   {
-      "modulo":"CPA",
-      "tipo":"FAC",
-      "entidad":"100001",
-      "fecha":"2016-12-31T00:00:00.000Z",
-      "hora":"100001",
-      "comprobante":"A004700033156",
-      "items":[
-         {
-            "articulo":"173072144",
-            "cantidad":4,
-            "precio":266.37
          }
       ]
    }

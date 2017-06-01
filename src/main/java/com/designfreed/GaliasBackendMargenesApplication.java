@@ -95,13 +95,8 @@ public class GaliasBackendMargenesApplication {
 			movimientoService.addMovimientosVta(vta);
 		}
 
-		List<Movimiento> movimientos = movimientoService.getMovimientos();
-
 		movimientoService.generarMargenes();
-
-		List<Margen> margenes = movimientoService.getMargenes();
-
-		System.out.println(margenes);
+		movimientoService.generarExcel();
 	}
 
 }

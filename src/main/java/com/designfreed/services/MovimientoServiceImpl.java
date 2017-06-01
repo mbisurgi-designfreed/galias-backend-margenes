@@ -7,13 +7,19 @@ import com.designfreed.model.Movimiento;
 import com.designfreed.repository.ImputacionCpaRepository;
 import com.designfreed.repository.ImputacionVtaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
@@ -51,7 +57,10 @@ public class MovimientoServiceImpl implements MovimientoService {
             Movimiento[] movs = new ObjectMapper().readValue(new File("stock.json"), Movimiento[].class);
 
             for (Movimiento mov: movs) {
-                mov.getItems().forEach((i) -> i.setCantidadDisponible(i.getCantidad()));
+                mov.getItems().forEach((i) -> {
+                    i.setArticulo(i.getArticulo().substring(1));
+                    i.setCantidadDisponible(i.getCantidad());
+                });
             }
 
             movimientos.addAll(Arrays.asList(movs));
@@ -78,7 +87,7 @@ public class MovimientoServiceImpl implements MovimientoService {
             }
 
             for (ItemComprobanteCpa item: cpa.getItems()) {
-                String articulo = item.getCodArticu();
+                String articulo = item.getCodArticu().substring(1);
                 Integer cantidad = item.getCantidad();
                 Double precio = item.getPrecioNet();
 
@@ -117,7 +126,7 @@ public class MovimientoServiceImpl implements MovimientoService {
             }
 
             for (ItemComprobanteVta item: vta.getItems()) {
-                String articulo = item.getCodArticu();
+                String articulo = item.getCodArticu().substring(1);
                 Integer cantidad = item.getCantidad();
                 Double precio = item.getPrecioNet();
 
@@ -149,18 +158,20 @@ public class MovimientoServiceImpl implements MovimientoService {
                                 }
 
                                 if (item1.getArticulo().equals(item2.getArticulo()) && item2.getCantidadDisponible() > 0) {
-                                    Date fecha = mov1.getFecha();
+                                    Date fechaVta = mov1.getFecha();
                                     String articulo = item1.getArticulo();
                                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
                                     Double precioVta = item1.getPrecio();
+                                    Date fechaCpa = mov2.getFecha();
                                     String comprobanteCpa = mov2.getTipo() + mov2.getComprobante();
                                     Double precioCpa = item2.getPrecio();
 
                                     Margen margen = new Margen();
-                                    margen.setFecha(fecha);
+                                    margen.setFechaVta(fechaVta);
                                     margen.setArticulo(articulo);
                                     margen.setComprobanteVta(comprobanteVta);
                                     margen.setPrecioVta(precioVta);
+                                    margen.setFechaCpa(fechaCpa);
                                     margen.setComprobanteCpa(comprobanteCpa);
                                     margen.setPrecioCpa(precioCpa);
 
@@ -215,7 +226,7 @@ public class MovimientoServiceImpl implements MovimientoService {
 //
 //                if (!mar.isEmpty()) {
 //                    mar.forEach(m -> {
-//                        Date fecha = m.getFecha();
+//                        Date fecha = m.getFechaVta();
 //                        String articulo = m.getArticulo();
 //                        Integer cantidad = m.getCantidad() * -1;
 //                        String comprobanteVta = m.getComprobanteVta();
@@ -234,29 +245,31 @@ public class MovimientoServiceImpl implements MovimientoService {
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("NCC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
-                    Date fecha = mov1.getFecha();
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
+                    Date fechaVta = mov1.getFecha();
                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
                     Double precioVta = item.getPrecio() * -1;
+                    Date fechaCpa = null;
                     String comprobanteCpa = null;
                     Double precioCpa = 0D;
 
-                    margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
+                    margenes.add(new Margen(articulo, cantidad, fechaVta, comprobanteVta, precioVta, fechaCpa, comprobanteCpa, precioCpa));
                 }
             }
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("NDC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
-                    Date fecha = mov1.getFecha();
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
+                    Date fechaVta = mov1.getFecha();
                     String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
                     Double precioVta = item.getPrecio() * 1;
+                    Date fechaCpa = null;
                     String comprobanteCpa = null;
                     Double precioCpa = 0D;
 
-                    margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
+                    margenes.add(new Margen(articulo, cantidad, fechaVta, comprobanteVta, precioVta, fechaCpa, comprobanteCpa, precioCpa));
                 }
             }
 
@@ -286,29 +299,31 @@ public class MovimientoServiceImpl implements MovimientoService {
 
             if (mov1.getModulo().equals("CPA") && mov1.getTipo().equals("NCC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
-                    Date fecha = mov1.getFecha();
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
+                    Date fechaVta = null;
                     String comprobanteVta = null;
                     Double precioVta = 0D;
+                    Date fechaCpa = mov1.getFecha();
                     String comprobanteCpa = mov1.getTipo() + mov1.getComprobante();
                     Double precioCpa = item.getPrecio() * -1;
 
-                    margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
+                    margenes.add(new Margen(articulo, cantidad, fechaVta, comprobanteVta, precioVta, fechaCpa, comprobanteCpa, precioCpa));
                 }
             }
 
             if (mov1.getModulo().equals("CPA") && mov1.getTipo().equals("NDC")) {
                 for (ItemMovimiento item: mov1.getItems()) {
-                    Date fecha = mov1.getFecha();
                     String articulo = item.getArticulo();
                     Integer cantidad = item.getCantidad();
+                    Date fechaVta = null;
                     String comprobanteVta = null;
                     Double precioVta = 0D;
+                    Date fechaCpa = mov1.getFecha();
                     String comprobanteCpa = mov1.getTipo() + mov1.getComprobante();
                     Double precioCpa = item.getPrecio() * 1;
 
-                    margenes.add(new Margen(fecha, articulo, cantidad, comprobanteVta, precioVta, comprobanteCpa, precioCpa));
+                    margenes.add(new Margen(articulo, cantidad, fechaVta, comprobanteVta, precioVta, fechaCpa, comprobanteCpa, precioCpa));
                 }
             }
         }
@@ -325,6 +340,72 @@ public class MovimientoServiceImpl implements MovimientoService {
         System.out.println(String.format("%f", compras));
         System.out.println(ventas - compras);
         System.out.println((ventas / compras) - 1);
+    }
+
+    @Override
+    public void generarExcel() {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet();
+        workbook.setSheetName(0, "Margenes");
+
+        String[] headers = new String[]{
+                "Articulo",
+                "Cantidad",
+                "Fecha Vta",
+                "Comprobante Vta",
+                "Precio Vta",
+                "Fecha Cpa",
+                "Comprobante Cpa",
+                "Precio Cpa"
+        };
+
+        HSSFRow headerRow = sheet.createRow(0);
+
+        for (int i = 0; i < headers.length; ++i) {
+            String header = headers[i];
+            HSSFCell cell = headerRow.createCell(i);
+            cell.setCellValue(header);
+        }
+
+        for (int i = 0; i < margenes.size(); ++i) {
+            HSSFRow dataRow = sheet.createRow(i + 1);
+
+            Margen mar = margenes.get(i);
+
+            String fechaVta = "";
+            String fechaCpa = "";
+
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+            if (mar.getFechaVta() != null) {
+                fechaVta = formatter.format(mar.getFechaVta());
+            }
+
+            if (mar.getFechaCpa() != null) {
+                fechaCpa = formatter.format(mar.getFechaCpa());
+            }
+
+            dataRow.createCell(0).setCellValue(mar.getArticulo());
+            dataRow.createCell(1).setCellValue(mar.getCantidad());
+            dataRow.createCell(2).setCellValue(fechaVta);
+            dataRow.createCell(3).setCellValue(mar.getComprobanteVta());
+            dataRow.createCell(4).setCellValue(mar.getPrecioVta());
+            dataRow.createCell(5).setCellValue(fechaCpa);
+            dataRow.createCell(6).setCellValue(mar.getComprobanteCpa());
+            dataRow.createCell(7).setCellValue(mar.getPrecioCpa());
+        }
+
+        try {
+            FileOutputStream file = new FileOutputStream("margenes.xls");
+
+            workbook.write(file);
+
+            file.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getTipoCpa(ComprobanteCpa cpa) {
