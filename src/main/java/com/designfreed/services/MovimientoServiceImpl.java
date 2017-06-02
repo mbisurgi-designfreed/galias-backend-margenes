@@ -198,9 +198,16 @@ public class MovimientoServiceImpl implements MovimientoService {
 
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("N/C")) {
                 for (String imp: mov1.getImputaciones()) {
-                    List<Margen> filtrado1 = margenes.stream()
-                            .filter(m -> m.getComprobanteVta().equals("FAC" + imp))
-                            .collect(Collectors.toList());
+                    List<Margen> filtrado1 = new ArrayList<>();
+//                    List<Margen> filtrado1 = margenes.stream()
+//                            .filter(m -> m.getComprobanteVta().equals("FAC" + imp))
+//                            .collect(Collectors.toList());
+
+                    for (Margen mar: margenes) {
+                        if (mar.getComprobanteVta() != null && mar.getComprobanteVta().equals("FAC" + imp)) {
+                            filtrado1.add(mar);
+                        }
+                    }
 
                     for (ItemMovimiento item1: mov1.getItems()) {
                         List<Margen> filtrado2 = filtrado1.stream()
@@ -247,10 +254,19 @@ public class MovimientoServiceImpl implements MovimientoService {
                                     .orElse(null);
 
                             if (compra != null) {
-                                for (ItemMovimiento item2: compra.getItems()) {
-                                    if (item2.getArticulo().equals(anu.getArticulo())) {
-                                        item2.setCantidadDisponible(item2.getCantidadDisponible() + anu.getCantidad() * -1);
-                                    }
+//                                for (ItemMovimiento item2: compra.getItems()) {
+//                                    if (item2.getArticulo().equals(anu.getArticulo())) {
+//                                        item2.setCantidadDisponible(item2.getCantidadDisponible() + anu.getCantidad() * -1);
+//                                    }
+//                                }
+
+                                ItemMovimiento item = compra.getItems().stream()
+                                        .filter(i -> i.getArticulo().equals(anu.getArticulo()))
+                                        .findFirst()
+                                        .orElse(null);
+
+                                if (item != null) {
+                                    item.setCantidadDisponible(item.getCantidadDisponible() + anu.getCantidad() * -1);
                                 }
                             }
 
