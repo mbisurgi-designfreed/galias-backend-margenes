@@ -39,7 +39,7 @@ public class GaliasBackendMargenesApplication {
 
 		try {
 			desde = formatter.parse("01/01/2017");
-			hasta = formatter.parse("30/04/2017");
+			hasta = formatter.parse("31/05/2017");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

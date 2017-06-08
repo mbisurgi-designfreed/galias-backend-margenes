@@ -5,12 +5,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034031",
+      "comprobante":"VIRGEN LEV.LIQUIDA 18KG",
       "items":[
          {
-            "articulo":"110004005",
+            "articulo":110004005,
             "cantidad":39,
-            "precio":909.5066999999999
+            "precio":757.9233333333335
          }
       ]
    },
@@ -20,10 +20,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034151",
+      "comprobante":"CALSA LPF CLASICA DISPLAY",
       "items":[
          {
-            "articulo":"111041181",
+            "articulo":111041181,
             "cantidad":461,
             "precio":44.0343
          }
@@ -35,12 +35,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034162",
+      "comprobante":"DUQUESA LEV. FRESCA X 500G",
       "items":[
          {
-            "articulo":"111060082",
+            "articulo":111060082,
             "cantidad":6338,
-            "precio":19.28889015462291
+            "precio":19.288890154622912
          }
       ]
    },
@@ -50,12 +50,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034150",
+      "comprobante":"LEUDEX LEV. FRESCA X 500G",
       "items":[
          {
-            "articulo":"111081082",
+            "articulo":111081082,
             "cantidad":6202,
-            "precio":33.64408036117381
+            "precio":14.418880038697194
          }
       ]
    },
@@ -65,10 +65,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700032645",
+      "comprobante":"MAURIPAN LEV. SECA MS X 500G",
       "items":[
          {
-            "articulo":"115017082",
+            "articulo":115017082,
             "cantidad":80,
             "precio":39.7107
          }
@@ -80,10 +80,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034024",
+      "comprobante":"MAURIPAN LEV. SECA MD X 500G",
       "items":[
          {
-            "articulo":"115018082",
+            "articulo":115018082,
             "cantidad":20,
             "precio":44.8347
          }
@@ -95,10 +95,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034152",
+      "comprobante":"MI PAN LSF INSTANTANEA X 40G",
       "items":[
          {
-            "articulo":"115112026",
+            "articulo":115112026,
             "cantidad":720,
             "precio":8.5934
          }
@@ -110,32 +110,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033910",
+      "comprobante":"LP HAR.MALTA MALTARINA X 10K",
       "items":[
          {
-            "articulo":"121010144",
+            "articulo":121010144,
             "cantidad":42,
             "precio":196.67149999999998
-         },
-         {
-            "articulo":"122015066",
-            "cantidad":4,
-            "precio":0
-         },
-         {
-            "articulo":"162010085",
-            "cantidad":18,
-            "precio":221.5
-         },
-         {
-            "articulo":"173122143",
-            "cantidad":235,
-            "precio":73.4403
-         },
-         {
-            "articulo":"173135145",
-            "cantidad":70,
-            "precio":82.76
          }
       ]
    },
@@ -145,10 +125,25 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033780",
+      "comprobante":"LP EXT MALTA DIASTASICO 5KG",
       "items":[
          {
-            "articulo":"122015112",
+            "articulo":122015066,
+            "cantidad":4,
+            "precio":0
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP EXT.DE MALTA DIASTICO 28KG",
+      "items":[
+         {
+            "articulo":122015112,
             "cantidad":6,
             "precio":913.908
          }
@@ -160,10 +155,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034030",
+      "comprobante":"CALSA GRASA OLEOMARGAR X 20K",
       "items":[
          {
-            "articulo":"131303093",
+            "articulo":131303093,
             "cantidad":47,
             "precio":430.9017
          }
@@ -175,12 +170,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034027",
+      "comprobante":"PASTELGRAS GRASA X20K",
       "items":[
          {
-            "articulo":"132003093",
+            "articulo":132003093,
             "cantidad":2274,
-            "precio":328.0978230870712
+            "precio":328.09797779243627
          }
       ]
    },
@@ -190,37 +185,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034155",
+      "comprobante":"RICABE GRASA SACH X 1K",
       "items":[
          {
-            "articulo":"132402090",
+            "articulo":132402090,
             "cantidad":880,
-            "precio":46.2718
-         },
-         {
-            "articulo":"163201144",
-            "cantidad":35,
-            "precio":239.6035
-         },
-         {
-            "articulo":"172810145",
-            "cantidad":431,
-            "precio":130.07
-         },
-         {
-            "articulo":"172970022",
-            "cantidad":18,
-            "precio":95.8406
-         },
-         {
-            "articulo":"173067145",
-            "cantidad":239,
-            "precio":87.7235
-         },
-         {
-            "articulo":"173136145",
-            "cantidad":78,
-            "precio":72.38196923076923
+            "precio":23.13585
          }
       ]
    },
@@ -230,12 +200,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700031909",
+      "comprobante":"LIBERTINA GRASA X 20KG",
       "items":[
          {
-            "articulo":"134322093",
+            "articulo":134322093,
             "cantidad":186,
-            "precio":382.00606021505376
+            "precio":417.41651397849466
          }
       ]
    },
@@ -245,12 +215,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034165",
+      "comprobante":"SUPER MARG.HOJAL X 10 KG",
       "items":[
          {
-            "articulo":"140021015",
+            "articulo":140021015,
             "cantidad":3772,
-            "precio":182.7580357900318
+            "precio":182.7579889183457
          }
       ]
    },
@@ -260,10 +230,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034033",
+      "comprobante":"MTK MARG MASAS O TRANS X 5KG",
       "items":[
          {
-            "articulo":"140140114",
+            "articulo":140140114,
             "cantidad":268,
             "precio":0
          }
@@ -275,10 +245,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033249",
+      "comprobante":"MTK MARG HOJAL 0 TRANS X 5 KG",
       "items":[
          {
-            "articulo":"140143114",
+            "articulo":140143114,
             "cantidad":2102,
             "precio":100.62004576593719
          }
@@ -290,10 +260,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700031936",
+      "comprobante":"SELECTA MELANGE MASA OTRAN 5KG",
       "items":[
          {
-            "articulo":"140148014",
+            "articulo":140148014,
             "cantidad":105,
             "precio":141.7439
          }
@@ -305,10 +275,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033901",
+      "comprobante":"PREMIUM MARG.MASAS0TRANS X 5K",
       "items":[
          {
-            "articulo":"140175014",
+            "articulo":140175014,
             "cantidad":4,
             "precio":118.9117
          }
@@ -320,12 +290,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700031906",
+      "comprobante":"PREMIUM MARG.MAS Y BATID X10K",
       "items":[
          {
-            "articulo":"140190097",
+            "articulo":140190097,
             "cantidad":20,
-            "precio":225.87213000000003
+            "precio":112.93606500000001
          }
       ]
    },
@@ -335,27 +305,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034160",
+      "comprobante":"LP POLVO PARA HORNEAR FLOR 4KG",
       "items":[
          {
-            "articulo":"161010132",
+            "articulo":161010132,
             "cantidad":31,
-            "precio":174.879
-         },
-         {
-            "articulo":"172401155",
-            "cantidad":77,
-            "precio":75.3031
-         },
-         {
-            "articulo":"172920022",
-            "cantidad":17,
-            "precio":95.8412
-         },
-         {
-            "articulo":"172940022",
-            "cantidad":15,
-            "precio":136.915
+            "precio":174.881
          }
       ]
    },
@@ -365,10 +320,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033650",
+      "comprobante":"LP POLVO P.HORN FLOR X 2KG",
       "items":[
          {
-            "articulo":"161010134",
+            "articulo":161010134,
             "cantidad":1,
             "precio":95.1925
          }
@@ -380,12 +335,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700032953",
+      "comprobante":"LP EMULSIONANTE GEL 2KG",
       "items":[
          {
-            "articulo":"163230490",
-            "cantidad":36,
-            "precio":481.62582222222227
+            "articulo":162010085,
+            "cantidad":18,
+            "precio":221.5
          }
       ]
    },
@@ -395,10 +350,40 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033641",
+      "comprobante":"LP MEJ SB TABLAS X 10GR",
       "items":[
          {
-            "articulo":"163230493",
+            "articulo":163201144,
+            "cantidad":35,
+            "precio":239.6035
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP MEJ.CONC. CALSA MAX X 1.5KG",
+      "items":[
+         {
+            "articulo":163230490,
+            "cantidad":36,
+            "precio":240.81291111111113
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP MEJ.CONC. CALSA MAX x 500GR",
+      "items":[
+         {
+            "articulo":163230493,
             "cantidad":72,
             "precio":131.2862
          }
@@ -410,12 +395,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033846",
+      "comprobante":"LP MEJ FORMULA UNO X 10KG",
       "items":[
          {
-            "articulo":"163250144",
+            "articulo":163250144,
             "cantidad":31,
-            "precio":301.214
+            "precio":301.21346666666665
          }
       ]
    },
@@ -425,42 +410,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034032",
+      "comprobante":"LP MEJ. PLUS2000 X 10 KG",
       "items":[
          {
-            "articulo":"163260144",
+            "articulo":163260144,
             "cantidad":40,
-            "precio":289.3766
-         },
-         {
-            "articulo":"172421156",
-            "cantidad":29,
-            "precio":49.1428
-         },
-         {
-            "articulo":"172441156",
-            "cantidad":35,
-            "precio":128.2225
-         },
-         {
-            "articulo":"172461156",
-            "cantidad":25,
-            "precio":161.8192
-         },
-         {
-            "articulo":"172471156",
-            "cantidad":35,
-            "precio":49.1429
-         },
-         {
-            "articulo":"172950022",
-            "cantidad":24,
-            "precio":95.8412
-         },
-         {
-            "articulo":"173068145",
-            "cantidad":222,
-            "precio":92.7165
+            "precio":289.37665000000004
          }
       ]
    },
@@ -470,12 +425,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034019",
+      "comprobante":"LP MEJ. MEJORMIGA X 10KG",
       "items":[
          {
-            "articulo":"164009144",
+            "articulo":164009144,
             "cantidad":33,
-            "precio":346.645
+            "precio":346.64525000000003
          }
       ]
    },
@@ -485,17 +440,27 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033905",
+      "comprobante":"LP ESENCIA VAIN 5LT",
       "items":[
          {
-            "articulo":"172411156",
+            "articulo":172401155,
+            "cantidad":77,
+            "precio":75.3028
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP ESENCIA NARANJA X 2 LT",
+      "items":[
+         {
+            "articulo":172411156,
             "cantidad":10,
             "precio":101.4583
-         },
-         {
-            "articulo":"172980022",
-            "cantidad":9,
-            "precio":106.49076666666666
          }
       ]
    },
@@ -505,10 +470,70 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700034159",
+      "comprobante":"LP ESENCIA LIMON X 2 LT",
       "items":[
          {
-            "articulo":"172690193",
+            "articulo":172421156,
+            "cantidad":29,
+            "precio":49.142599999999995
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP ESENCIA COCO X 2 LT",
+      "items":[
+         {
+            "articulo":172441156,
+            "cantidad":35,
+            "precio":128.2225
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP ESENCIA PAN DULCE X 2 LT",
+      "items":[
+         {
+            "articulo":172461156,
+            "cantidad":25,
+            "precio":161.8192
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP ESENCIA MANTECA 2LT",
+      "items":[
+         {
+            "articulo":172471156,
+            "cantidad":35,
+            "precio":49.1429
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP CHIPS SEMIAMARGO 4 X 1 KG",
+      "items":[
+         {
+            "articulo":172690193,
             "cantidad":41,
             "precio":67.8118
          }
@@ -520,17 +545,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700031712",
+      "comprobante":"LP BANO MOLDEO SEMIAMARGO 1 KG",
       "items":[
          {
-            "articulo":"172760193",
+            "articulo":172760193,
             "cantidad":4,
             "precio":69.4283
-         },
-         {
-            "articulo":"173733130",
-            "cantidad":9,
-            "precio":187.374
          }
       ]
    },
@@ -540,10 +560,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033465",
+      "comprobante":"LP CREMA MERENGUE X 3KG",
       "items":[
          {
-            "articulo":"172805145",
+            "articulo":172805145,
             "cantidad":47,
             "precio":107.0477
          }
@@ -555,10 +575,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033850",
+      "comprobante":"FLEISCH.CREM VEGET VAIN X 1 LT",
       "items":[
          {
-            "articulo":"172809160",
+            "articulo":172809160,
             "cantidad":1048,
             "precio":40.4305
          }
@@ -570,10 +590,25 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700032954",
+      "comprobante":"LP CREMA PASTELERA X 3KG",
       "items":[
          {
-            "articulo":"172830145",
+            "articulo":172810145,
+            "cantidad":431,
+            "precio":130.07
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP CREMA CHANTILLY CLAS X 3 KG",
+      "items":[
+         {
+            "articulo":172830145,
             "cantidad":60,
             "precio":147.2885
          }
@@ -585,10 +620,10 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033372",
+      "comprobante":"LP KOLAROMA CAFE 1LT",
       "items":[
          {
-            "articulo":"172910022",
+            "articulo":172910022,
             "cantidad":15,
             "precio":136.9166
          }
@@ -600,10 +635,25 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033157",
+      "comprobante":"LP KOLAROMA LIMON 1LT",
       "items":[
          {
-            "articulo":"172930022",
+            "articulo":172920022,
+            "cantidad":17,
+            "precio":95.8412
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP KOLAROMA NARANJA 1LT",
+      "items":[
+         {
+            "articulo":172930022,
             "cantidad":6,
             "precio":95.8412
          }
@@ -615,12 +665,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700032956",
+      "comprobante":"LP KOLAROMA FRUTILLA 1LT",
       "items":[
          {
-            "articulo":"173037145",
-            "cantidad":20,
-            "precio":199.1187
+            "articulo":172940022,
+            "cantidad":15,
+            "precio":136.915
          }
       ]
    },
@@ -630,10 +680,70 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004600164074",
+      "comprobante":"LP KOLAROMA VAIN 1LT",
       "items":[
          {
-            "articulo":"173040144",
+            "articulo":172950022,
+            "cantidad":24,
+            "precio":95.8412
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP KOLAROMA MANTECA 1LT",
+      "items":[
+         {
+            "articulo":172970022,
+            "cantidad":18,
+            "precio":95.8406
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP KOLAROMA CHOCO 1LT",
+      "items":[
+         {
+            "articulo":172980022,
+            "cantidad":9,
+            "precio":106.49127222222222
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP PREM BROWNIE 3KG",
+      "items":[
+         {
+            "articulo":173037145,
+            "cantidad":20,
+            "precio":99.55935
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP PREM. PAN DULCE X 10 KG",
+      "items":[
+         {
+            "articulo":173040144,
             "cantidad":32,
             "precio":293.5875
          }
@@ -645,12 +755,12 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033909",
+      "comprobante":"LP PREM.BUDIN X 3KG",
       "items":[
          {
-            "articulo":"173046145",
+            "articulo":173046145,
             "cantidad":57,
-            "precio":79.6467
+            "precio":79.64716666666668
          }
       ]
    },
@@ -660,10 +770,40 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004700033371",
+      "comprobante":"LP PREM. BIZCO-BUDIN X 3KG",
       "items":[
          {
-            "articulo":"173069145",
+            "articulo":173067145,
+            "cantidad":239,
+            "precio":87.72346666666665
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP PREM. MUFFINS VAIN.X 3KG",
+      "items":[
+         {
+            "articulo":173068145,
+            "cantidad":222,
+            "precio":92.71656666666667
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP PREM.MUFFINS CHOCO.X 3KG",
+      "items":[
+         {
+            "articulo":173069145,
             "cantidad":80,
             "precio":97.356195
          }
@@ -675,12 +815,72 @@
       "entidad":"100001",
       "fecha":"2016-12-31T00:00:00.000Z",
       "hora":"100001",
-      "comprobante":"A004600159961",
+      "comprobante":"LP PREM. PAN DE QUESO 2KG",
       "items":[
          {
-            "articulo":"173732130",
+            "articulo":173122143,
+            "cantidad":235,
+            "precio":73.44035
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP PREM.AKTIVO CEREALES 3KG",
+      "items":[
+         {
+            "articulo":173135145,
+            "cantidad":70,
+            "precio":82.76
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP PREM EKILIBRIUM FIBRA 3KG",
+      "items":[
+         {
+            "articulo":173136145,
+            "cantidad":78,
+            "precio":72.38201538461539
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP BANIO ALFAJ. SEMIAMARGO 3KG",
+      "items":[
+         {
+            "articulo":173732130,
             "cantidad":10,
             "precio":192.927
+         }
+      ]
+   },
+   {
+      "modulo":"CPA",
+      "tipo":"FAC",
+      "entidad":"100001",
+      "fecha":"2016-12-31T00:00:00.000Z",
+      "hora":"100001",
+      "comprobante":"LP BANIO ALFAJ. BLANCO 3KG",
+      "items":[
+         {
+            "articulo":173733130,
+            "cantidad":9,
+            "precio":187.374
          }
       ]
    }

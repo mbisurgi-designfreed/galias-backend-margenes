@@ -7,6 +7,7 @@ import com.designfreed.model.Movimiento;
 import com.designfreed.repository.ImputacionCpaRepository;
 import com.designfreed.repository.ImputacionVtaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oracle.tools.packager.Log;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -14,10 +15,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -199,9 +197,6 @@ public class MovimientoServiceImpl implements MovimientoService {
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("N/C")) {
                 for (String imp: mov1.getImputaciones()) {
                     List<Margen> filtrado1 = new ArrayList<>();
-//                    List<Margen> filtrado1 = margenes.stream()
-//                            .filter(m -> m.getComprobanteVta().equals("FAC" + imp))
-//                            .collect(Collectors.toList());
 
                     for (Margen mar: margenes) {
                         if (mar.getComprobanteVta() != null && mar.getComprobanteVta().equals("FAC" + imp)) {
@@ -254,12 +249,6 @@ public class MovimientoServiceImpl implements MovimientoService {
                                     .orElse(null);
 
                             if (compra != null) {
-//                                for (ItemMovimiento item2: compra.getItems()) {
-//                                    if (item2.getArticulo().equals(anu.getArticulo())) {
-//                                        item2.setCantidadDisponible(item2.getCantidadDisponible() + anu.getCantidad() * -1);
-//                                    }
-//                                }
-
                                 ItemMovimiento item = compra.getItems().stream()
                                         .filter(i -> i.getArticulo().equals(anu.getArticulo()))
                                         .findFirst()
