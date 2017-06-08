@@ -20,5 +20,7 @@ public interface MovimientoService {
 
     void generarMargenes();
 
+    void generarPendientes();
+
     void generarExcel();
 }

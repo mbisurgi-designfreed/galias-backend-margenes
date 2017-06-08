@@ -96,6 +96,7 @@ public class GaliasBackendMargenesApplication {
 		}
 
 		movimientoService.generarMargenes();
+		movimientoService.generarPendientes();
 		movimientoService.generarExcel();
 	}
 

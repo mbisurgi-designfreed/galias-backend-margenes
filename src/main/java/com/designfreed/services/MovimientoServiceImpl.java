@@ -129,7 +129,7 @@ public class MovimientoServiceImpl implements MovimientoService {
                 Integer cantidad = item.getCantidad();
                 Double precio = item.getPrecioNet();
 
-                mov.getItems().add(new ItemMovimiento(articulo, cantidad, precio, 0));
+                mov.getItems().add(new ItemMovimiento(articulo, cantidad, precio, cantidad));
             }
 
             movimientos.add(mov);
@@ -142,10 +142,17 @@ public class MovimientoServiceImpl implements MovimientoService {
 
         for (Movimiento mov1: movimientos) {
             if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("FAC")) {
+
+                if (mov1.getComprobante().equals("A000100004367")) {
+                    System.out.println("A000100004367");
+                }
+
                 for (ItemMovimiento item1: mov1.getItems()) {
                     Integer cantidad = item1.getCantidad();
 
                     for (Movimiento mov2: movimientos) {
+                        item1.setCantidadDisponible(cantidad);
+
                         if (cantidad == 0) {
                             break;
                         }
@@ -366,6 +373,70 @@ public class MovimientoServiceImpl implements MovimientoService {
         System.out.println(String.format("%f", compras));
         System.out.println(ventas - compras);
         System.out.println((ventas / compras) - 1);
+    }
+
+    public void generarPendientes() {
+        orderMovimientos();
+
+        for (Movimiento mov1 : movimientos) {
+            if (mov1.getModulo().equals("VTA") && mov1.getTipo().equals("FAC")) {
+
+                if (mov1.getComprobante().equals("A000100004367")) {
+                    System.out.println("A000100004367");
+                }
+
+                for (ItemMovimiento item1 : mov1.getItems()) {
+                    Integer cantidad = item1.getCantidadDisponible();
+
+                    for (Movimiento mov2 : movimientos) {
+                        if (cantidad == 0) {
+                            break;
+                        }
+
+                        if (mov2.getModulo().equals("CPA") && mov2.getTipo().equals("FAC")) {
+                            for (ItemMovimiento item2 : mov2.getItems()) {
+                                if (cantidad == 0) {
+                                    break;
+                                }
+
+                                if (item1.getArticulo().equals(item2.getArticulo()) && item2.getCantidadDisponible() > 0) {
+                                    String articulo = item1.getArticulo();
+                                    Date fechaVta = mov1.getFecha();
+                                    String comprobanteVta = mov1.getTipo() + mov1.getComprobante();
+                                    Double precioVta = item1.getPrecio();
+                                    Date fechaCpa = mov2.getFecha();
+                                    String comprobanteCpa = mov2.getTipo() + mov2.getComprobante();
+                                    Double precioCpa = item2.getPrecio();
+
+                                    Margen margen = new Margen();
+                                    margen.setFechaVta(fechaVta);
+                                    margen.setArticulo(articulo);
+                                    margen.setComprobanteVta(comprobanteVta);
+                                    margen.setPrecioVta(precioVta);
+                                    margen.setFechaCpa(fechaCpa);
+                                    margen.setComprobanteCpa(comprobanteCpa);
+                                    margen.setPrecioCpa(precioCpa);
+
+                                    if (cantidad <= item2.getCantidadDisponible()) {
+                                        margen.setCantidad(cantidad);
+                                        item2.setCantidadDisponible(item2.getCantidadDisponible() - cantidad);
+                                        cantidad = 0;
+                                    }
+
+                                    if (cantidad > item2.getCantidadDisponible()) {
+                                        margen.setCantidad(item2.getCantidadDisponible());
+                                        cantidad = cantidad - item2.getCantidadDisponible();
+                                        item2.setCantidadDisponible(0);
+                                    }
+
+                                    margenes.add(margen);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
